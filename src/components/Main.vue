@@ -25,18 +25,21 @@ export default {
         return {
             movies: '',
             visibility: false,
+            text: 'a'
         }
     },
     created: function() {
         axios
         .get('https://api.themoviedb.org/3/search/movie',{
             params: {
-                api_key: 'ee6f3e9d34bbe17cf718adc774f7aa29',
-                query: 'future'
+                api_key:'ee6f3e9d34bbe17cf718adc774f7aa29',
+                query: `${this.text}`
             }
         })
+        
         .then (
             result => {
+                //this.text = this.searchedItem;
                 this.movies = result.data.results;
                 console.log(this.movies);
             }
@@ -47,17 +50,15 @@ export default {
             if(this.searchedItem == "") {
                 return this.movies && this.visibility;
             } else {
-                const newMovies = this.movies.filter(
+                const newMovies = this.movies.filter (
                     element => {
                         this.visibility=true;
+                        //this.text=this.searchedItem;
                         return element.title.toLowerCase().includes(this.searchedItem.toLowerCase());
                     }
                 )
                 return newMovies;
             }
-            
-            
-
         }
     }
 
