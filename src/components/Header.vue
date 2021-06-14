@@ -4,9 +4,10 @@
 
         <div class="input-group mb-3 w-25 h-50">
             <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2"
-            v-model="searchMovie">
+            v-model="searchMovie"
+            @keyup="$emit('performSearch', searchMovie)">
             <button class="btn btn-outline-danger ms-2" type="button" id="button-addon2"
-            @click.prevent = "$emit('performSearch',searchMovie)">Search</button>
+            @click.prevent = "$emit('performSearch', searchMovie)">Search</button>
         </div>
     </nav>
     
@@ -17,7 +18,8 @@ export default {
     name: 'Header',
     data: function(){
         return {
-            searchMovie:''
+            searchMovie:'',
+            
         }
     }
 

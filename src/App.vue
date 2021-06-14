@@ -2,22 +2,32 @@
     <div id="app">
       <Header 
       @performSearch="searchSelectedMovie"/>
-      <main>
-        <Container />
-      </main>
       
+      <Main 
+      :searchedItem="searchFieldText"/> 
     </div>
 </template>
 
 <script>
 import Header from './components/Header';
-import Container from './components/Container';
+import Main from './components/Main';
 
 export default {
   name: 'App',
   components: {
     Header,
-    Container
+    Main
+  },
+  data: function(){
+    return {
+      searchFieldText:''
+    }
+  },
+  methods: {
+    searchSelectedMovie: function(searchMovie) {
+      return this.searchFieldText = searchMovie;
+      
+    }
   }
 }
 </script>

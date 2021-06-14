@@ -18,6 +18,6 @@ export default {
 
 <style scoped lang='scss'>
     div{
-        width: calc(100% / 6);
+        width: calc(100% / 4);
     }
 </style>
