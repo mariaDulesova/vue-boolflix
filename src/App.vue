@@ -34,30 +34,28 @@ export default {
     searchSelectedMovie: function(text) {
       if(text.trim() == '') {
           this.allFilms=[];
-
         } else {
           axios.all([
-
-              //Movies
-              axios.get(this.moviesApiUrl,{
-                params: {
-                  api_key:this.apiKey,
-                  query: text.trim()
-                }
-              }),
-
-              //Series
-              axios.get(this.seriesApiUrl, {
-                params: {
-                  api_key: this.apiKey,
-                  query:text.trim()
-                }
-              })
-            ])
+            //Movies
+            axios.get(this.moviesApiUrl,{
+              params: {
+                api_key:this.apiKey,
+                query: text.trim()
+              }
+            }),
+            //Series
+            axios.get(this.seriesApiUrl, {
+              params: {
+                api_key: this.apiKey,
+                query:text.trim()
+              }
+            })
+          ])
           .then(axios.spread((...results) => {
               this.movies=results[0].data.results;
               this.series=results[1].data.results;
-             console.log(this.movies, this.series)
+              this.allFilms =[...this.movies, ...this.series]
+              console.log(this.movies, this.series)
             })
           )
           .catch(
@@ -66,7 +64,6 @@ export default {
             }
           )
           //return this.allFilms = this.movies.concat(this.series)
-          return this.allFilms =[...this.movies, ...this.series]
         }
       }
     }
