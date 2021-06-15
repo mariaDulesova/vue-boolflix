@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main class="p-3">
         <div class="d-flex justify-content-center flex-wrap">
         <!-- :class ="(!visibility)?'d-none':''" -->
             <Film 
@@ -34,6 +34,7 @@ export default {
     main {
         height: calc(100vh - 80px);
         overflow:scroll;
+
     }
 
 </style>

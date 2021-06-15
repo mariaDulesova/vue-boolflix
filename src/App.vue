@@ -42,7 +42,7 @@ export default {
               axios.get(this.moviesApiUrl,{
                 params: {
                   api_key:this.apiKey,
-                  query: text
+                  query: text.trim()
                 }
               }),
 
@@ -50,7 +50,7 @@ export default {
               axios.get(this.seriesApiUrl, {
                 params: {
                   api_key: this.apiKey,
-                  query:text
+                  query:text.trim()
                 }
               })
             ])
@@ -65,7 +65,8 @@ export default {
               console.log('Errore:', error)
             }
           )
-          return this.allFilms = this.movies.concat(this.series)
+          //return this.allFilms = this.movies.concat(this.series)
+          return this.allFilms =[...this.movies, ...this.series]
         }
       }
     }
