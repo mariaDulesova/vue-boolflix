@@ -2,7 +2,6 @@
     <div id="app">
       <Header 
       @performSearch="searchSelectedMovie"/>
-      
       <Main 
       :searchedItems="allFilms"/> 
     </div>
@@ -17,7 +16,7 @@ export default {
   name: 'App',
   components: {
     Header,
-    Main
+    Main,
   },
   data: function(){
     return {
@@ -27,7 +26,7 @@ export default {
       apiKey: 'ee6f3e9d34bbe17cf718adc774f7aa29',
       movies:'',
       series: '',
-      allFilms: ''
+      allFilms: '',
     }
   },
   methods: {
@@ -54,8 +53,7 @@ export default {
           .then(axios.spread((...results) => {
               this.movies=results[0].data.results;
               this.series=results[1].data.results;
-              this.allFilms =[...this.movies, ...this.series]
-              console.log(this.movies, this.series)
+              this.allFilms =[...this.movies, ...this.series];
             })
           )
           .catch(
@@ -63,7 +61,6 @@ export default {
               console.log('Errore:', error)
             }
           )
-          //return this.allFilms = this.movies.concat(this.series)
         }
       }
     }
