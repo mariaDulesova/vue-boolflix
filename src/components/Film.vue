@@ -25,11 +25,14 @@
             </div>
             <div class="d-flex">
                 <div v-for="(i,n) in 5" :key="n">
-                    <i class="fa-star"
+                    <i class="fa-star my-3"
                     :class="(i<=setFullStars)?'fas':'far'"></i>
                 </div>
             </div>
-            <div>{{ setOverview() }}</div>
+            <div>
+                <span>Overview:</span> 
+                <p>{{ setOverview() }}</p>
+            </div>
         </div>
         <!-- /BackCover -->
     </div>
@@ -59,8 +62,8 @@ export default {
             return `${webLink}${coverWidth}${this.inputs.poster_path}`;
         },
         setOverview: function() {
-            if(this.inputs.overview.length>=430) {
-                return this.inputs.overview.slice(0, 430)+'...'
+            if(this.inputs.overview.length>=300) {
+                return this.inputs.overview.slice(0, 300)+'...'
             } else {
                 return this.inputs.overview;
             }
@@ -101,6 +104,7 @@ export default {
     }
     span{
         color:white;
+        font-weight: 700;
     }
     .fa-star {
         color: rgb(255, 174, 0);
