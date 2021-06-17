@@ -1,9 +1,12 @@
 <template>
     <main>
+        <!-- Display before film search started -->
         <div class="d-flex justify-content-center align-items-center home-container"
         v-if="searchedItems.length==0">
             <Home/>
         </div>
+        <!-- /Display before film search started -->
+        <!-- Display films searched -->
         <div class="d-flex justify-content-center flex-wrap m-3"
         v-else>
             <Film 
@@ -11,6 +14,7 @@
             :key="item.id"
             :inputs ='item'/>
         </div>
+        <!-- /Display films searched -->
     </main> 
 </template>
 
@@ -37,10 +41,9 @@ export default {
 
         .home-container{
             height: 100%;
-            background-image: url(https://help.nflxext.com/0af6ce3e-b27a-4722-a5f0-e32af4df3045_what_is_netflix_5_en.png);
+            background-image:linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)), url(https://help.nflxext.com/0af6ce3e-b27a-4722-a5f0-e32af4df3045_what_is_netflix_5_en.png);
             background-position: center;
             background-size: cover;
-            opacity: 0.9;
         }
 
     }

@@ -1,36 +1,36 @@
 <template>
     <div class="d-flex justify-content-center m-1 movie-container position-relative">
         <!-- Cover -->
-        <img :src="(inputs.poster_path == null)?'':addCover()" alt="Cover" 
+        <img :src="(inputs.poster_path == null)?'':addCover()" :alt="inputs.title || inputs.name" 
         :class=" (inputs.poster_path == null)? 'd-none':'cover-poster'">
         <!-- /Cover -->
         <!-- BackCover -->
         <div class="d-flex flex-column position-absolute p-4 text-container">
-            <h5> <span>Title: </span> {{ inputs.title || inputs.name}}</h5>
-            <p> <span>Original Title:</span> {{ inputs.original_title || inputs.original_name}}</p>
+            <h5> <span class="fw-bold">Title: </span> {{ inputs.title || inputs.name}}</h5>
+            <p> <span class="fw-bold">Original Title:</span> {{ inputs.original_title || inputs.original_name}}</p>
             <div class="language">
-                <span> Language: </span>
+                <span class="fw-bold me-2">Language:</span>
                 <!-- Soluzione 1: va bene se ci sono 1-2 bandiere-->
                 <img src="../assets/img/en.png" alt="GB Flag"
                     v-if="(inputs.original_language =='en')">
                 <img src="../assets/img/it.png" alt="IT Flag"
                     v-else-if="(inputs.original_language =='it')">
-                <p v-else>{{ inputs.original_language }}</p>
+                <span v-else>{{ inputs.original_language }}</span>
                 <!-- Soluzione 2 -->
                 <!-- <img 
-                src="" 
+                src="require(..`assets/img/${inputs.original_language}.png`)" 
                 alt="`${inputs.original_language}`"
                 v-if="availableFlags.includes(inputs.original_language)">
                 <p v-else>{{ inputs.original_language }}</p>-->
             </div>
             <div class="d-flex">
-                <div v-for="(i,n) in 5" :key="n">
+                <div v-for="(n) in 5" :key="n">
                     <i class="fa-star my-3"
-                    :class="(i<=setFullStars)?'fas':'far'"></i>
+                    :class="(n<=setFullStars)?'fas':'far'"></i>
                 </div>
             </div>
             <div>
-                <span>Overview:</span> 
+                <span class="fw-bold">Overview:</span> 
                 <p>{{ setOverview() }}</p>
             </div>
         </div>
@@ -101,11 +101,12 @@ export default {
             width: 100%;
             background-color: rgb(0, 0, 0, 0.9);
         }
-    }
-    span{
+
+        span{
         color:white;
-        font-weight: 700;
     }
+    }
+    
     .fa-star {
         color: rgb(255, 174, 0);
     }
